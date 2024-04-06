@@ -1,6 +1,4 @@
 from pygame import *
-'''Необхідні класи'''
-
 # клас-батько для спрайтів
 class GameSprite(sprite.Sprite):
     # конструктор класу
@@ -82,13 +80,19 @@ monster = Enemy('qwer.png', win_width - 80, 280, 2)
 final = GameSprite('meat.png', win_width - 120, win_height - 80, 0)
 
 # стіни
-w1 = Wall(154, 205, 50, 100, 20, 450, 10)
-w2 = Wall(154, 205, 50, 100, 480, 350, 10)
-w3 = Wall(154, 205, 50, 100, 20, 10, 380)
-w4 = Wall(154, 205, 50, 200, 130, 10, 350)
-w5 = Wall(154, 205, 50, 450, 130, 10, 360)
-w6 = Wall(154, 205, 50, 300, 20, 10, 350)
-w7 = Wall(154, 205, 50, 390, 120, 130, 10)
+w1 = Wall(154, 205, 50, 80, 80, 10, 500)
+w2 = Wall(154, 205, 50, 80, 480, 450, 10)
+w3 = Wall(154, 205, 50, 180, 400, 350, 10)
+#w4 = Wall(154, 205, 50, 525, 400, 10, 100)
+w5 = Wall(154, 205, 50, 180, 0, 10, 320)
+w6 = Wall(154, 205, 50, 180, 310, 200, 10)
+w7 = Wall(154, 205, 50, 460, 230, 10, 170)
+w8 = Wall(154, 205, 50, 270, 230, 200, 10)
+w9 = Wall(154, 205, 50, 270, 75, 10, 165)
+w10 = Wall(154, 205, 50, 360, 0, 10, 160)
+w11 = Wall(154, 205, 50, 460, 75, 10, 165)
+w12 = Wall(154, 205, 50, 460, 75, 135, 10)
+w13 = Wall(154, 205, 50, 555, 180, 190, 10)
 
 game = True
 finish = False
@@ -128,19 +132,32 @@ while game:
         w1.draw_wall()
         w2.draw_wall()
         w3.draw_wall()
-        w4.draw_wall()
+        #w4.draw_wall()
         w5.draw_wall()
         w6.draw_wall()
         w7.draw_wall()
+        w8.draw_wall()
+        w9.draw_wall()
+        w10.draw_wall()
+        w11.draw_wall()
+        w12.draw_wall()
+        w13.draw_wall()
+        
 
     if (sprite.collide_rect(player, monster) or 
         sprite.collide_rect(player, w1) or 
         sprite.collide_rect(player, w2) or
         sprite.collide_rect(player, w3) or
-        sprite.collide_rect(player, w4) or 
+        #sprite.collide_rect(player, w4) or 
         sprite.collide_rect(player, w5) or 
         sprite.collide_rect(player, w6) or
-        sprite.collide_rect(player, w7)):
+        sprite.collide_rect(player, w7) or
+        sprite.collide_rect(player, w8) or
+        sprite.collide_rect(player, w9) or
+        sprite.collide_rect(player, w10) or
+        sprite.collide_rect(player, w11) or
+        sprite.collide_rect(player, w12) or
+        sprite.collide_rect(player, w12)):
         finish = True
         window.blit(lose, (200,200))
         kick.play()
@@ -156,6 +173,23 @@ while game:
         finish = True
         window.blit(win, (200,200))
         money.play()
+        for i in range(100):
+            i += 1
+        break
 
     display.update()
     clock.tick(FPS)
+
+
+
+window2 = display.set_mode((win_width, win_height))
+display.set_caption("Maze2")
+background2 = transform.scale(image.load("64.jpg"), (win_width, win_height))
+
+
+
+while True:
+    window2.blit(background2, (0,0))
+        
+    display.update()
+    clock.tick(40)
